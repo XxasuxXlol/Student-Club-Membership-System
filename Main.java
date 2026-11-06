@@ -1,15 +1,14 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main{
-    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    public void validation(){ //login validate
         final String username = "ADMIN";
         final String password = "A1234";
-        final String exitOption = "4";
 
         String attemptUsername = null, attemptPassword = null;
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println(" \t < This is Student Club Membership System V1 > \n");
+        System.out.println(" \t < This is Student Club Membership System V2 > \n");
 
 // User Validation - Start
         do {
@@ -26,31 +25,49 @@ public class Main{
                     System.out.println("Incorrect username or password, please try again.");
                 }
             }
-                if(attemptUsername.equalsIgnoreCase(username) && attemptPassword.equalsIgnoreCase(password)){
-                    System.out.println("----------------------------------");
-                    System.out.println("Welcome to Student Club Membership System!");
-                    break;
-                }
-            }while(attemptUsername.equalsIgnoreCase(username) && attemptPassword.equalsIgnoreCase(password));
+            if(attemptUsername.equalsIgnoreCase(username) && attemptPassword.equalsIgnoreCase(password)){
+                System.out.println("----------------------------------");
+                System.out.println("Welcome to Student Club Membership System!");
+                break;
+            }
+        }while(attemptUsername.equalsIgnoreCase(username) && attemptPassword.equalsIgnoreCase(password));
 // User validation -- End
+    }
 
-// Main System interface -- Start
+    public void systemInterface(){
+        final String exitOption = "4";
         String attemptOption = "0";
 
         while(!(attemptOption.equalsIgnoreCase(exitOption))){
-        System.out.print(" 1. Club Management \n 2. Membership Management \n 3. Reporting \n");
-        System.out.print("Please select the features options (1/2/3): ");
-        attemptOption = sc.nextLine();
+            System.out.println("<-----System----->");
+            System.out.print(" 1. Club Management \n 2. Membership Management \n 3. Reporting \n 4. Exit\n");
+            System.out.print("Please select the features options (1/2/3) or exit: ");
+
+            attemptOption = sc.nextLine();
+
+//Create object
+//Club club = new Club();
+Membership member = new Membership();
+ReportManagement rm = new ReportManagement();
 
             switch(attemptOption){
-                case "1": System.out.println("Obj Club Management..."); break;
-                case "2": System.out.println("Obj Membership Management..."); break;
-                case "3": System.out.println("Obj Reporting..."); break;
+                //case "1": club.display(); break;
+                case "2": member.display(); break;
+                case "3": rm.display(); break;
                 case "4": System.out.println("System Exit..."); break;
                 default: System.out.println("Invalid options, please try again.");
             }
         }
-// Main System Interface -- End
+    }
+
+    public static void main(String[] args) {
+// Create objects
+        Main main = new Main();
+
+// Main objects
+        main.validation(); //Admin login validation
+        main.systemInterface(); //Main User-Interface
+
 
     }
 }
